@@ -25,12 +25,12 @@ export function Location({ locationId }: LocationProps) {
   if (!location) return <p>Carregando localização...</p>;
 
   return (
-    <div className="p-4 rounded-md shadow-xl w-96">
+    <div className="p-4 rounded-md shadow-xl w-96 max-sm:w-full">
       <div>
         <p><strong>Nome:</strong> {location.name}</p>
         <p><strong>Tipo:</strong> {location.type || "Desconhecido"}</p>
         <p><strong>Dimensão:</strong> {location.dimension || "Desconhecida"}</p>
-        <p>Moradores totais nessa localização: {location.residents.length}</p>
+        <p><strong>Moradores totais nessa localização:</strong> {location.residents.length}</p>
       </div>
     </div>
   );
