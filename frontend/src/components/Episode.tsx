@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { monthsToPortuguese } from "../functions/translateText";
 
 interface EpisodeInfo {
   name: string;
@@ -25,13 +26,15 @@ export function Episode({ episodeId }: EpisodeProps) {
   if (!episode) return <p>Carregando episódio...</p>;
 
   return (
-    <div className="p-4 rounded-md shadow-xl w-96">
-      <div>
-        <p><strong>Nome:</strong> {episode.name}</p>
-        <p><strong>Data de lançamento:</strong> {episode.air_date || "Desconhecida"}</p>
-        <p><strong>Identificador:</strong> {episode.episode || "Desconhecida"}</p>
-        <p>Personagens totais nesse episódio: {episode.characters.length}</p>
+    <main className="flex justify-center items-center h-screen">
+      <div className="p-4 rounded-md shadow-xl w-96 max-md:w-70 ">
+        <div className="ml-4">
+          <h2 className="text-3xl font-bold mb-2 max-md:text-2xl">{episode.name}</h2>
+          <p>Data de lançamento: <span className="text-green-700">{monthsToPortuguese(episode.air_date)}</span></p>
+          <p>Identificador: <span className="text-red-600">{episode.episode}</span></p>
+          <p>Personagens totais neste episódio: <span className="text-gray-600">{episode.characters.length}</span></p>
+        </div>
       </div>
-    </div>
+    </main>
   );
 }
