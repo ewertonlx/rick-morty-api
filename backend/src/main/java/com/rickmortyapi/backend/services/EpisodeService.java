@@ -2,7 +2,12 @@ package com.rickmortyapi.backend.services;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.http.ResponseEntity;
+
+import com.rickmortyapi.backend.dto.ApiResponseDTO;
+import com.rickmortyapi.backend.dto.EpisodeDTO;
+
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
 
 @Service
 public class EpisodeService {
@@ -10,28 +15,35 @@ public class EpisodeService {
     private final RestTemplate restTemplate = new RestTemplate();
     private final String BASE_URL = "https://rickandmortyapi.com/api/episode";
 
-    public Object getAllEpisodes(Integer page) {
+    public ApiResponseDTO<EpisodeDTO> getAllEpisodes(Integer page) {
         String url = BASE_URL;
         if (page != null && page > 0) {
             url += "?page=" + page;
         }
 
-        ResponseEntity<Object> response = restTemplate.getForEntity(url, Object.class);
-        return response.getBody();
+        return restTemplate.exchange(
+                url,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<ApiResponseDTO<EpisodeDTO>>() {}
+        ).getBody();
     }
 
-    public Object getEpisodeById(int id) {
+    public EpisodeDTO getEpisodeById(int id) {
         String url = BASE_URL + "/" + id;
-        ResponseEntity<Object> response = restTemplate.getForEntity(url, Object.class);
-        return response.getBody();
+        return restTemplate.getForObject(url, EpisodeDTO.class);
     }
 
-    public Object getEpisodeByName(String name, int page) {
+    public ApiResponseDTO<EpisodeDTO> getEpisodeByName(String name, int page) {
         String url = BASE_URL + "?name=" + name;
         if (page > 0) {
             url += "&page=" + page;
         }
-        ResponseEntity<Object> response = restTemplate.getForEntity(url, Object.class);
-        return response.getBody();
+        return restTemplate.exchange(
+                url,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<ApiResponseDTO<EpisodeDTO>>() {}
+        ).getBody();
     }
 }

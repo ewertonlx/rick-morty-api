@@ -1,5 +1,7 @@
 package com.rickmortyapi.backend.controllers;
 
+import com.rickmortyapi.backend.dto.ApiResponseDTO;
+import com.rickmortyapi.backend.dto.EpisodeDTO;
 import com.rickmortyapi.backend.services.EpisodeService;
 
 import org.springframework.web.bind.annotation.*;
@@ -16,17 +18,17 @@ public class EpisodeController {
     }
 
     @GetMapping
-    public Object getAllEpisodes(@RequestParam(required = false) Integer page) {
+    public ApiResponseDTO<EpisodeDTO> getAllEpisodes(@RequestParam(required = false) Integer page) {
         return service.getAllEpisodes(page);
     }
 
     @GetMapping("/{id}")
-    public Object getEpisodeById(@PathVariable int id) {
+    public EpisodeDTO getEpisodeById(@PathVariable int id) {
         return service.getEpisodeById(id);
     }
 
     @GetMapping("/search/{name}")
-    public Object getEpisodeByName(@PathVariable String name, @RequestParam(defaultValue = "1") int page) {
+    public ApiResponseDTO<EpisodeDTO> getEpisodeByName(@PathVariable String name, @RequestParam(defaultValue = "1") int page) {
         return service.getEpisodeByName(name, page);
     }
 }
