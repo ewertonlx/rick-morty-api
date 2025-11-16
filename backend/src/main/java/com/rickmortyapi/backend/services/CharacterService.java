@@ -17,15 +17,13 @@ public class CharacterService {
 
     public ApiResponseDTO<CharacterDTO> getAllCharacters(Integer page) {
         String url = BASE_URL;
-        if (page != null && page > 0) {
-            url += "?page=" + page;
-        }
 
+        if (page != null && page > 0) url += "?page=" + page;
         return restTemplate.exchange(
-                url,
-                HttpMethod.GET,
-                null,
-                new ParameterizedTypeReference<ApiResponseDTO<CharacterDTO>>() {}
+            url,
+            HttpMethod.GET,
+            null,
+            new ParameterizedTypeReference<ApiResponseDTO<CharacterDTO>>() {}
         ).getBody();
     }
 
@@ -36,10 +34,8 @@ public class CharacterService {
 
     public ApiResponseDTO<CharacterDTO> getCharacterByName(String name, int page) {
         String url = BASE_URL + "?name=" + name;
-        if (page > 0) {
-            url += "&page=" + page;
-        }
 
+        if (page > 0) url += "&page=" + page;
         return restTemplate.exchange(
             url,
             HttpMethod.GET,

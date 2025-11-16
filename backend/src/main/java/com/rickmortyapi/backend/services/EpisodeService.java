@@ -17,15 +17,13 @@ public class EpisodeService {
 
     public ApiResponseDTO<EpisodeDTO> getAllEpisodes(Integer page) {
         String url = BASE_URL;
-        if (page != null && page > 0) {
-            url += "?page=" + page;
-        }
 
+        if (page != null && page > 0) url += "?page=" + page;
         return restTemplate.exchange(
-                url,
-                HttpMethod.GET,
-                null,
-                new ParameterizedTypeReference<ApiResponseDTO<EpisodeDTO>>() {}
+            url,
+            HttpMethod.GET,
+            null,
+            new ParameterizedTypeReference<ApiResponseDTO<EpisodeDTO>>() {}
         ).getBody();
     }
 
@@ -36,14 +34,13 @@ public class EpisodeService {
 
     public ApiResponseDTO<EpisodeDTO> getEpisodeByName(String name, int page) {
         String url = BASE_URL + "?name=" + name;
-        if (page > 0) {
-            url += "&page=" + page;
-        }
+
+        if (page > 0) url += "&page=" + page;
         return restTemplate.exchange(
-                url,
-                HttpMethod.GET,
-                null,
-                new ParameterizedTypeReference<ApiResponseDTO<EpisodeDTO>>() {}
+            url,
+            HttpMethod.GET,
+            null,
+            new ParameterizedTypeReference<ApiResponseDTO<EpisodeDTO>>() {}
         ).getBody();
     }
 }

@@ -6,9 +6,9 @@ import com.rickmortyapi.backend.services.CharacterService;
 
 import org.springframework.web.bind.annotation.*;
 
-    @RestController
-    @RequestMapping("/api/characters")
-    @CrossOrigin(origins = "*")
+@RestController
+@RequestMapping("/api/characters")
+@CrossOrigin(origins = "*")
 public class CharacterController {
 
     private final CharacterService service;

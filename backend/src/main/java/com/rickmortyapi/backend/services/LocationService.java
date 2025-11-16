@@ -17,15 +17,13 @@ public class LocationService {
 
     public ApiResponseDTO<LocationDTO> getAllLocations(Integer page) {
         String url = BASE_URL;
-        if (page != null && page > 0) {
-            url += "?page=" + page;
-        }
 
+        if (page != null && page > 0) url += "?page=" + page;
         return restTemplate.exchange(
-                url,
-                HttpMethod.GET,
-                null,
-                new ParameterizedTypeReference<ApiResponseDTO<LocationDTO>>() {}
+            url,
+            HttpMethod.GET,
+            null,
+            new ParameterizedTypeReference<ApiResponseDTO<LocationDTO>>() {}
         ).getBody();
     }
 
@@ -36,14 +34,13 @@ public class LocationService {
 
     public ApiResponseDTO<LocationDTO> getLocationByName(String name, int page) {
         String url = BASE_URL + "?name=" + name;
-        if (page > 0) {
-            url += "&page=" + page;
-        }
+
+        if (page > 0) url += "&page=" + page;
         return restTemplate.exchange(
-                url,
-                HttpMethod.GET,
-                null,
-                new ParameterizedTypeReference<ApiResponseDTO<LocationDTO>>() {}
+            url,
+            HttpMethod.GET,
+            null,
+            new ParameterizedTypeReference<ApiResponseDTO<LocationDTO>>() {}
         ).getBody();
     }
 }
