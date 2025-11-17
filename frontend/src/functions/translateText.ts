@@ -32,7 +32,6 @@ export function translateSpecies(species: string) {
 
 export function monthsToPortuguese(month: string) {
   const monthSplit = month.split(" ");
-  console.log(monthSplit);
   switch (monthSplit[0].toLowerCase()) {
     case "january":
       return `${monthSplit[1]} de Janeiro de ${monthSplit[2]}`;
