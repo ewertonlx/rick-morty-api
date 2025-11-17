@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { NavBar } from '../components/NavBar';
-import { CardCharacter } from '../components/CardCharacter';
-import { Episode } from '../components/Episode';
+import { CardCharacter } from '../components/Characters';
+import { Episodes } from '../components/Episodes';
 
 interface Episode {
   name: string;
@@ -11,7 +11,7 @@ interface Episode {
   characters: string[];
 }
 
-export function EpisodeDetails() {
+export function Episode() {
   const [searchTerm, setSearchTerm] = useState("");
   const { id } = useParams<{ id: string }>();
   const [episode, setEpisode] = useState<Episode | null>(null);
@@ -20,7 +20,7 @@ export function EpisodeDetails() {
     fetch(`http://localhost:8080/api/episodes/${id}`)
       .then((res) => res.json())
       .then((data) => setEpisode(data))
-      .catch((err) => console.error('Erro ao buscar personagem:', err));
+      .catch((err) => console.error('Erro ao buscar episódio:', err));
   }, [id]);
 
   if (!episode) 
@@ -45,7 +45,7 @@ export function EpisodeDetails() {
   return (
     <main>
       <NavBar onSearch={setSearchTerm} />
-      <Episode episodeId={id || ""} />
+      <Episodes episodeId={id || ""} />
     </main>
   );
 }

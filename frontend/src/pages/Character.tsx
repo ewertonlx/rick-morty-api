@@ -4,7 +4,7 @@ import { NavBar } from '../components/NavBar';
 import { tranlateGender, translateSpecies, translateStatus } from '../functions/translateText';
 import { Location } from '../components/Location';
 import { getIdFromUrl } from '../functions/getIdFromUrl';
-import { CardCharacter } from '../components/CardCharacter';
+import { CardCharacter } from '../components/Characters';
 
 interface Character {
   id: number;
@@ -18,7 +18,7 @@ interface Character {
   episode: string[];
 }
 
-export function CharacterDetails() {
+export function Character() {
   const [searchTerm, setSearchTerm] = useState("");
   const { id } = useParams<{ id: string }>();
   const [character, setCharacter] = useState<Character | null>(null);

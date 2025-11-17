@@ -11,7 +11,7 @@ interface EpisodeInfo {
 interface EpisodeProps {
   episodeId: string;
 }
-export function Episode({ episodeId }: EpisodeProps) {
+export function Episodes({ episodeId }: EpisodeProps) {
   const [episode, setEpisode] = useState<EpisodeInfo | null>(null);
 
   useEffect(() => {

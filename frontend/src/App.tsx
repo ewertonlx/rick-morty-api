@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CardCharacter } from "./components/CardCharacter";
+import { CardCharacter } from "./components/Characters";
 import { NavBar } from "./components/NavBar";
 
 function App() {
